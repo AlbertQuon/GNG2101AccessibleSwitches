@@ -3,8 +3,8 @@
 // pins of the switch
 const int upButton = 10;
 const int downButton = 9;
-const int leftButton = 12;
-const int rightButton = 11;
+const int leftButton = 11;
+const int rightButton = 12;
 const int mouseButton = 8;
 
 int upState = digitalRead(upButton);
@@ -12,6 +12,8 @@ int downState = digitalRead(downButton);
 int rightState = digitalRead(rightButton);
 int leftState = digitalRead(leftButton);
 int clickState = digitalRead(mouseButton);
+
+int d = 5;
 
 // variables will change:or reading the pushbutton status
 
@@ -36,8 +38,11 @@ void loop() {
   else if(downState == LOW) { Mouse.move(0, -1, 0); }
   else if(leftState == LOW) { Mouse.move(-1, 0, 0); }
   else if(rightState == LOW) { Mouse.move(1, 0, 0); }
-  else if(clickState == LOW) { Mouse.click(); }
+  else if(clickState == LOW) { 
+    Mouse.click(); 
+    delay(100);
+  }
 
-  delay(3);
+  delay(d);
   
 }
