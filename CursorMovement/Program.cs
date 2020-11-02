@@ -23,13 +23,13 @@ namespace CursorMovement {
         private const int MOUSEEVENTF_RIGHTUP = 0x10;
         static SerialPort port;
         static async Task Main() {
-            port = new SerialPort("COM3", 115200);
-            var cts = new CancellationTokenSource();
-            if (!port.IsOpen) {
+            port = new SerialPort("COM3", 115200); // may need to be changed based on computer configuration (port, baud rate)
+            
+            if (!port.IsOpen) { // open the port to communicate with the arduino
                 port.Open();
                 port.DtrEnable = true;
             }
-            int mode = 1;
+            int mode = 1; // initial mode, start moving the cursor
             Cursor cursor = new Cursor(Cursor.Current.Handle);
             int maxX = Screen.PrimaryScreen.Bounds.Width - 1;
             int maxY = Screen.PrimaryScreen.Bounds.Height - 1;
