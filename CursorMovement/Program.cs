@@ -22,8 +22,10 @@ namespace CursorMovement {
         private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         private const int MOUSEEVENTF_RIGHTUP = 0x10;
         static SerialPort port;
-        static async Task Main() {
-            port = new SerialPort("COM3", 115200); // may need to be changed based on computer configuration (port, baud rate)
+        [STAThread]
+        static void Main() {
+            
+            /*port = new SerialPort("COM3", 115200); // may need to be changed based on computer configuration (port, baud rate)
             
             if (!port.IsOpen) { // open the port to communicate with the arduino
                 port.Open();
@@ -36,9 +38,13 @@ namespace CursorMovement {
             Boolean left = false;
             Boolean up = false;
             Boolean clicked = false;
-            int xSpeed = 2, ySpeed = 2;
-            
-            while (true) {
+            int xSpeed = 2, ySpeed = 2;*/
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+
+            /*while (true) {
                 
                 //Console.WriteLine(port.ReadExisting());
                 if (port.ReadExisting().Equals("switch")) {
@@ -89,15 +95,15 @@ namespace CursorMovement {
                         }
                         break;
                 }
-                await Task.Delay(10);
+                Thread.Sleep(50);
             }
             
             port.Close();
 
-            
+            */
 
         }
-        
+
 
     }
 }
