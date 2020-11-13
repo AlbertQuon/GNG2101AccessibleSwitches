@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -24,7 +25,9 @@ namespace CursorMovement {
         static SerialPort port;
 
         private int speed = 2;
-        private int delay = 20;
+        private int delay = 1;
+        private int switchDelay = 2;
+        private double delayText = 1;
         public Form1() {
             InitializeComponent();
             init();
@@ -33,7 +36,8 @@ namespace CursorMovement {
 
         private void Form1_MouseClick(object sender, MouseEventArgs e) {
             label1.Text = (speed * 50).ToString();
-            label3.Text = delay.ToString();
+            label3.Text = (delayText).ToString();
+            label8.Text = switchDelay.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -51,16 +55,19 @@ namespace CursorMovement {
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e) {
-            if (delay < 500) {
-                delay += 20;
-                label3.Text = delay.ToString();
+            if (delay < 3000) {
+                delay += 250;
+                delayText = delay / 1000.0;
+                label3.Text = (delayText).ToString();
+                port.Write(delay.ToString());
             }
         }
         private void button4_MouseClick(object sender, MouseEventArgs e) {
-            if (delay > 20) {
-                delay -= 20;
-                label3.Text = delay.ToString();
-
+            if (delay > 1000) {
+                delay -= 250;
+                delayText = delay / 1000.0;
+                label3.Text = (delayText).ToString();
+                port.Write(delay.ToString());
             }
         }
 
@@ -99,59 +106,59 @@ namespace CursorMovement {
             Boolean left = false;
             Boolean up = false;
             Boolean clicked = false;
-            
+            int currentTime = DateTime.Now.Second;
             while (true) {
 
                 //Console.WriteLine(port.ReadExisting());
                 if (port.ReadExisting().Equals("switch")) {
-                    mode++;
+                    mode--;
                     clicked = false;
-                    if (mode > 4) { mode = 1; }
+                    mode = mode-1 < 1 ? 5 : mode-1;
                 }
 
+                if (DateTime.Now.Second - currentTime >= switchDelay) {
+                    currentTime = DateTime.Now.Second;
+                    mode = mode+1 > 5 ? 1 : mode+1;
+                    clicked = false;
+                }
+                Console.WriteLine(mode);
                 switch (mode) {
-                    case (1):
-                        if (!left) {
+                    case (1): // right
+
+                        if (Cursor.Position.X < maxX - 5) {
                             Cursor.Position = new Point(Cursor.Position.X + speed, Cursor.Position.Y);
                         }
-                        if (left) {
-                            Cursor.Position = new Point(Cursor.Position.X - speed, Cursor.Position.Y);
-                        }
-                        if (Cursor.Position.X > maxX - 5) {
-                            left = true;
-                        }
-                        if (Cursor.Position.X < 5) {
-                            left = false;
-                        }
                         break;
-                    case (2):
-                        if (up) {
-                            Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y + speed);
-                        }
-                        if (!up) {
+                    case (2): // up
+                        if (Cursor.Position.Y > 5) {
                             Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y - speed);
                         }
-                        if (Cursor.Position.Y > maxY - 5) {
-                            up = false;
-                        }
-                        if (Cursor.Position.Y < 5) {
-                            up = true;
+                        break;
+                    case (3): // left
+                        
+                        if (Cursor.Position.X > 5) {
+                            Cursor.Position = new Point(Cursor.Position.X - speed, Cursor.Position.Y);
                         }
                         break;
-                    case (3):
+                    case (4): // down
+                        if (Cursor.Position.Y < maxY-5) {
+                            Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y + speed);
+                        }
+                        break;
+                    case (5):
                         if (!clicked) {
                             mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
                             clicked = true;
                         }
                         break;
-                    case (4):
-                        if (!clicked) {
-                            mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
-                            clicked = true;
-                        }
-                        break;
+                    //case (4):
+                     //   if (!clicked) {
+                     //       mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
+                     //       clicked = true;
+                     //   }
+                     //   break;
                 }
-                await Task.Delay(delay);
+                await Task.Delay(20);
             }
 
             port.Close();
@@ -167,6 +174,28 @@ namespace CursorMovement {
 
         private void label5_Click(object sender, EventArgs e) {
 
+        }
+
+        private void label7_Click(object sender, EventArgs e) {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e) {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+            if (switchDelay < 5) {
+                switchDelay += 1;
+                label3.Text = delay.ToString();
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e) {
+            if (switchDelay > 1) {
+                switchDelay += 1;
+                label3.Text = delay.ToString();
+            }
         }
 
         private void CreateShortcut() {

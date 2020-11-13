@@ -35,6 +35,10 @@ namespace CursorMovement {
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,12 +73,12 @@ namespace CursorMovement {
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.label3.Location = new System.Drawing.Point(456, 105);
+            this.label3.Location = new System.Drawing.Point(468, 105);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 107);
+            this.label3.Size = new System.Drawing.Size(98, 107);
             this.label3.TabIndex = 6;
-            this.label3.Text = "20";
+            this.label3.Text = "1";
             // 
             // label4
             // 
@@ -107,12 +111,12 @@ namespace CursorMovement {
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 35.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.label6.Location = new System.Drawing.Point(408, 22);
+            this.label6.Location = new System.Drawing.Point(379, 22);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(249, 53);
+            this.label6.Size = new System.Drawing.Size(327, 53);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Delay (ms)";
+            this.label6.Text = "Input Delay (s)";
             // 
             // button4
             // 
@@ -176,12 +180,74 @@ namespace CursorMovement {
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 35.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
+            this.label7.Location = new System.Drawing.Point(722, 22);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(340, 53);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Timer Delay (s)";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // label8
+            // 
+            this.label8.AccessibleName = "50";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
+            this.label8.Location = new System.Drawing.Point(843, 105);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(98, 107);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "2";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.button5.Image = global::CursorMovement.Properties.Resources.icons8_plus_100;
+            this.button5.Location = new System.Drawing.Point(914, 251);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(134, 117);
+            this.button5.TabIndex = 12;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.button6.Image = global::CursorMovement.Properties.Resources.icons8_minus_100__1_;
+            this.button6.Location = new System.Drawing.Point(764, 257);
+            this.button6.Margin = new System.Windows.Forms.Padding(0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(94, 102);
+            this.button6.TabIndex = 13;
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
-            this.ClientSize = new System.Drawing.Size(681, 413);
+            this.ClientSize = new System.Drawing.Size(1082, 419);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -215,6 +281,10 @@ namespace CursorMovement {
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private Label label7;
+        private Label label8;
+        private Button button5;
+        private Button button6;
     }
 }
 
