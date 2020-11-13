@@ -27,7 +27,7 @@ namespace CursorMovement {
         private int speed = 2;
         private int delay = 1;
         private int switchDelay = 2;
-        private double delayText = 1;
+        private double delayText = 1.00;
         public Form1() {
             InitializeComponent();
             init();
@@ -36,7 +36,7 @@ namespace CursorMovement {
 
         private void Form1_MouseClick(object sender, MouseEventArgs e) {
             label1.Text = (speed * 50).ToString();
-            label3.Text = (delayText).ToString();
+            label3.Text = (delayText/1.00).ToString();
             label8.Text = switchDelay.ToString();
         }
 
@@ -57,7 +57,7 @@ namespace CursorMovement {
         private void button3_MouseClick(object sender, MouseEventArgs e) {
             if (delay < 3000) {
                 delay += 250;
-                delayText = delay / 1000.0;
+                delayText = (delay-1) / 1000.00;
                 label3.Text = (delayText).ToString();
                 port.Write(delay.ToString());
             }
@@ -65,7 +65,7 @@ namespace CursorMovement {
         private void button4_MouseClick(object sender, MouseEventArgs e) {
             if (delay > 1000) {
                 delay -= 250;
-                delayText = delay / 1000.0;
+                delayText = (delay - 1) / 1000.00;
                 label3.Text = (delayText).ToString();
                 port.Write(delay.ToString());
             }

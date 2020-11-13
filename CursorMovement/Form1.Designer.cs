@@ -73,12 +73,12 @@ namespace CursorMovement {
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.label3.Location = new System.Drawing.Point(468, 105);
+            this.label3.Location = new System.Drawing.Point(410, 105);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 107);
+            this.label3.Size = new System.Drawing.Size(231, 107);
             this.label3.TabIndex = 6;
-            this.label3.Text = "1";
+            this.label3.Text = "1.00";
             // 
             // label4
             // 
