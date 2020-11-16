@@ -25,8 +25,8 @@ namespace CursorMovement {
         static SerialPort port;
 
         private int speed = 2;
-        private int delay = 1;
-        private int switchDelay = 2;
+        private int delay = 1000;
+        private int switchDirectionDelay = 2;
         private Form2 form2 = null;
         private Boolean rightClickEnabled = false;
         public Form1() {
@@ -53,7 +53,7 @@ namespace CursorMovement {
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e) {
-            if (delay < 3000) {
+            if (delay < 5000) {
                 delay += 250;
                 label3.Text = string.Format("{0:N2}", (delay - 1) / 1000.00);
                 port.Write(delay.ToString());
@@ -67,16 +67,16 @@ namespace CursorMovement {
             }
         }
         private void button5_Click(object sender, EventArgs e) {
-            if (switchDelay < 5) {
-                switchDelay += 1;
-                label8.Text = switchDelay.ToString();
+            if (switchDirectionDelay < 5) {
+                switchDirectionDelay += 1;
+                label8.Text = switchDirectionDelay.ToString();
             }
         }
 
         private void button6_Click(object sender, EventArgs e) {
-            if (switchDelay > 1) {
-                switchDelay -= 1;
-                label8.Text = switchDelay.ToString();
+            if (switchDirectionDelay > 1) {
+                switchDirectionDelay -= 1;
+                label8.Text = switchDirectionDelay.ToString();
             }
         }
 
@@ -112,6 +112,7 @@ namespace CursorMovement {
             }
             form2 = new Form2();
             form2.Show();
+            port.Write(delay.ToString());
             
         }
 
@@ -125,8 +126,9 @@ namespace CursorMovement {
             int currentTime = DateTime.Now.Second;
             while (true) {
 
-                //Console.WriteLine(port.ReadExisting());
-                if (port.ReadExisting().Equals("switch")) {
+                var stringIn = port.ReadExisting();
+                Console.WriteLine(stringIn);
+                if (stringIn.Equals("switch")) {
                     mode--;
                     clicked = false;
                     if (rightClickEnabled) {
@@ -139,7 +141,7 @@ namespace CursorMovement {
                     ;
                 }
 
-                if (DateTime.Now.Second - currentTime >= switchDelay) {
+                if (DateTime.Now.Second - currentTime >= switchDirectionDelay) {
                     currentTime = DateTime.Now.Second;
                     if (rightClickEnabled) {
                         mode = mode + 1 > 6 ? 1 : mode + 1;
@@ -151,8 +153,9 @@ namespace CursorMovement {
                     clicked = false;
                 }
                 form2.updateForm(nextMode);
-                //Console.WriteLine(mode);
-                //Console.WriteLine(nextMode);
+                Console.WriteLine(mode);
+                Console.WriteLine(nextMode);
+                Console.WriteLine(rightClickEnabled);
                 switch (mode) {
                     case (1): // right
 
