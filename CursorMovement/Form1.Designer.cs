@@ -39,6 +39,8 @@ namespace CursorMovement {
             this.label8 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -125,7 +127,7 @@ namespace CursorMovement {
             this.button4.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.button4.Image = global::CursorMovement.Properties.Resources.icons8_minus_100__1_;
-            this.button4.Location = new System.Drawing.Point(405, 258);
+            this.button4.Location = new System.Drawing.Point(409, 244);
             this.button4.Margin = new System.Windows.Forms.Padding(0);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 102);
@@ -141,7 +143,7 @@ namespace CursorMovement {
             this.button3.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.button3.Image = global::CursorMovement.Properties.Resources.icons8_plus_100;
-            this.button3.Location = new System.Drawing.Point(523, 250);
+            this.button3.Location = new System.Drawing.Point(523, 237);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(134, 117);
@@ -156,7 +158,7 @@ namespace CursorMovement {
             this.button2.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.button2.Image = global::CursorMovement.Properties.Resources.icons8_minus_100__1_;
-            this.button2.Location = new System.Drawing.Point(54, 250);
+            this.button2.Location = new System.Drawing.Point(55, 241);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 102);
@@ -172,7 +174,7 @@ namespace CursorMovement {
             this.button1.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.button1.Image = global::CursorMovement.Properties.Resources.icons8_plus_100;
-            this.button1.Location = new System.Drawing.Point(166, 243);
+            this.button1.Location = new System.Drawing.Point(185, 236);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 117);
@@ -214,7 +216,7 @@ namespace CursorMovement {
             this.button5.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.button5.Image = global::CursorMovement.Properties.Resources.icons8_plus_100;
-            this.button5.Location = new System.Drawing.Point(914, 251);
+            this.button5.Location = new System.Drawing.Point(907, 238);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(134, 117);
@@ -229,7 +231,7 @@ namespace CursorMovement {
             this.button6.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
             this.button6.Image = global::CursorMovement.Properties.Resources.icons8_minus_100__1_;
-            this.button6.Location = new System.Drawing.Point(764, 257);
+            this.button6.Location = new System.Drawing.Point(762, 246);
             this.button6.Margin = new System.Windows.Forms.Padding(0);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(94, 102);
@@ -238,12 +240,41 @@ namespace CursorMovement {
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.linkLabel1.Location = new System.Drawing.Point(767, 394);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(264, 26);
+            this.linkLabel1.TabIndex = 14;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Open Next Move Indicator";
+            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.checkBox1.Location = new System.Drawing.Point(47, 392);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(315, 30);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "Add Right Click To Sequence";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
-            this.ClientSize = new System.Drawing.Size(1082, 419);
+            this.ClientSize = new System.Drawing.Size(1081, 436);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label8);
@@ -258,7 +289,6 @@ namespace CursorMovement {
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -285,6 +315,8 @@ namespace CursorMovement {
         private Label label8;
         private Button button5;
         private Button button6;
+        private LinkLabel linkLabel1;
+        private CheckBox checkBox1;
     }
 }
 
