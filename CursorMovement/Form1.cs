@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
@@ -122,8 +123,8 @@ namespace CursorMovement {
             int maxX = Screen.PrimaryScreen.Bounds.Width - 1;
             int maxY = Screen.PrimaryScreen.Bounds.Height - 1;
             Boolean clicked = false;
-            
-            int currentTime = DateTime.Now.Second;
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
             while (true) {
 
                 var stringIn = port.ReadExisting();
@@ -140,9 +141,10 @@ namespace CursorMovement {
                     }
                     ;
                 }
-
-                if (DateTime.Now.Second - currentTime >= switchDirectionDelay) {
-                    currentTime = DateTime.Now.Second;
+                stopWatch.Stop();
+                if (stopWatch.ElapsedMilliseconds/1000 >= switchDirectionDelay) {
+                    stopWatch.Restart();
+                    
                     if (rightClickEnabled) {
                         mode = mode + 1 > 6 ? 1 : mode + 1;
                         nextMode = mode == 6 ? 1 : mode + 1;
@@ -151,11 +153,13 @@ namespace CursorMovement {
                         nextMode = mode == 5 ? 1 : mode + 1;
                     }
                     clicked = false;
+                } else {
+                    stopWatch.Start();
                 }
                 form2.updateForm(nextMode);
                 Console.WriteLine(mode);
                 Console.WriteLine(nextMode);
-                Console.WriteLine(rightClickEnabled);
+
                 switch (mode) {
                     case (1): // right
 
