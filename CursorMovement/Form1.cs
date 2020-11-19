@@ -61,7 +61,7 @@ namespace CursorMovement {
             }
         }
         private void button4_MouseClick(object sender, MouseEventArgs e) {
-            if (delay > 1000) {
+            if (delay > 500) {
                 delay -= 250;
                 label3.Text = string.Format("{0:N2}", (delay - 1) / 1000.00);
                 port.Write(delay.ToString());
@@ -139,12 +139,11 @@ namespace CursorMovement {
                         mode = mode - 1 < 1 ? 5 : mode - 1;
                         nextMode = mode == 5 ? 1 : mode + 1;
                     }
-                    ;
+                    stopWatch.Restart();
                 }
                 stopWatch.Stop();
                 if (stopWatch.ElapsedMilliseconds/1000 >= switchDirectionDelay) {
                     stopWatch.Restart();
-                    
                     if (rightClickEnabled) {
                         mode = mode + 1 > 6 ? 1 : mode + 1;
                         nextMode = mode == 6 ? 1 : mode + 1;
