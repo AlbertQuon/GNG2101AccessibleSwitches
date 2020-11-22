@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Reflection;
@@ -22,7 +23,6 @@ namespace CursorMovement {
         private const int MOUSEEVENTF_LEFTUP = 0x04;
         private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         private const int MOUSEEVENTF_RIGHTUP = 0x10;
-        private int xSpeed = 2, ySpeed = 2;
         static SerialPort port;
 
         private int speed = 2;
@@ -36,52 +36,74 @@ namespace CursorMovement {
             cursorMove();
         }
 
-        private void Form1_MouseClick(object sender, MouseEventArgs e) {
-        }
-
+        // GUI ***************************************************************************************************
         private void button1_Click(object sender, EventArgs e) {
             if (speed < 6) {
                 speed += 1;
-                label1.Text = (speed * 50).ToString();
+                speedText.Text = (speed * 50).ToString();
             }
         }
 
         private void button2_Click(object sender, EventArgs e) {
             if (speed > 1) {
                 speed -= 1;
-                label1.Text = (speed * 50).ToString();
+                speedText.Text = (speed * 50).ToString();
             }
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e) {
             if (delay < 5000) {
                 delay += 250;
-                label3.Text = string.Format("{0:N2}", (delay - 1) / 1000.00);
+                inputDelayText.Text = string.Format("{0:N2}", (delay - 1) / 1000.00);
                 port.Write(delay.ToString());
             }
         }
         private void button4_MouseClick(object sender, MouseEventArgs e) {
             if (delay > 500) {
                 delay -= 250;
-                label3.Text = string.Format("{0:N2}", (delay - 1) / 1000.00);
+                inputDelayText.Text = string.Format("{0:N2}", (delay - 1) / 1000.00);
                 port.Write(delay.ToString());
             }
         }
         private void button5_Click(object sender, EventArgs e) {
             if (switchDirectionDelay < 5) {
                 switchDirectionDelay += 1;
-                label8.Text = switchDirectionDelay.ToString();
+                directionDelayText.Text = switchDirectionDelay.ToString();
             }
         }
 
         private void button6_Click(object sender, EventArgs e) {
             if (switchDirectionDelay > 1) {
                 switchDirectionDelay -= 1;
-                label8.Text = switchDirectionDelay.ToString();
+                directionDelayText.Text = switchDirectionDelay.ToString();
             }
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
 
+            if (form2.IsDisposed) {
+                form2 = new Form2();
+                form2.Show();
+            }
+
+        }
+
+        private void rightClickEnable_CheckedChanged(object sender, EventArgs e) {
+            rightClickEnabled = rightClickEnable.Checked;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            saveSettings();
+        }
+        private void Form1_Load(object sender, EventArgs e) {
+            loadSettings();
+            speedText.Text = (speed * 50).ToString();
+            inputDelayText.Text = string.Format("{0:N2}", (delay - 1) / 1000.00);
+            directionDelayText.Text = switchDirectionDelay.ToString();
+            
+            rightClickEnable.Checked = rightClickEnabled;
+        }
+        // Functions ***************************************************************************************************
         private void init() {
             string portName;
             //port = new SerialPort("COM3", 115200);
@@ -91,6 +113,7 @@ namespace CursorMovement {
                 try {
                     port = new SerialPort(portName, 115200);
                     port.Open();
+                    
                     if (port.ReadExisting().Equals("switch")) {
                         break;
                     }
@@ -111,11 +134,66 @@ namespace CursorMovement {
                 Environment.Exit(1);
                 
             }
+            loadSettings();
             form2 = new Form2();
             form2.Show();
             port.Write(delay.ToString());
             
         }
+        
+
+        private void loadSettings() {
+            string currDir = Path.GetDirectoryName(Application.ExecutablePath);
+            string path = currDir + "\\settings.txt";
+
+            if (!File.Exists(path)) {
+                using (StreamWriter sw = File.CreateText(path)) {
+                    sw.WriteLine("cursorSpeed(pixel/second)=" + speed.ToString());
+                    sw.WriteLine("switchDelay(milliseconds)=" + delay.ToString());
+                    sw.WriteLine("directionTimeChange(seconds)=" + switchDirectionDelay.ToString());
+                    sw.WriteLine("enableRightClick=" + rightClickEnabled.ToString());
+                }
+            } else {
+                using (StreamReader sr = File.OpenText(path)) {
+                    string s;
+                    string[] setting;
+                    try {
+                        while ((s = sr.ReadLine()) != null) {
+                            setting = s.Split('=');
+                            Console.WriteLine(setting[0] + "|" + setting[1]);
+                            if (setting[0].Equals("cursorSpeed(pixel/second)")) {
+                                speed = Int32.Parse(setting[1]);
+                            }
+                            if (setting[0].Equals("switchDelay(milliseconds)")) {
+                                delay = Int32.Parse(setting[1]);
+                            }
+                            if (setting[0].Equals("directionTimeChange(seconds)")) {
+                                switchDirectionDelay = Int32.Parse(setting[1]);
+                            }
+                            if (setting[0].Equals("enableRightClick")) {
+                                rightClickEnabled = Boolean.Parse(setting[1]);
+                            }
+                        }
+                    } catch (Exception e) {
+                        MessageBox.Show("Error reading settings");
+                    }
+                }
+            }
+            
+        }
+
+        private void saveSettings() {
+            string currDir = Path.GetDirectoryName(Application.ExecutablePath);
+            string path = currDir + "\\settings.txt";
+            using (StreamWriter sw = File.CreateText(path)) {
+                sw.WriteLine("cursorSpeed(pixel/second)=" + speed.ToString());
+                sw.WriteLine("switchDelay(milliseconds)=" + delay.ToString());
+                sw.WriteLine("directionTimeChange(seconds)=" + switchDirectionDelay.ToString());
+                sw.WriteLine("enableRightClick=" + rightClickEnabled.ToString());
+            }
+            
+        }
+
 
         private async Task cursorMove() {
             int mode = 1, nextMode = 2; // initial mode, start moving the cursor
@@ -128,13 +206,12 @@ namespace CursorMovement {
             while (true) {
 
                 var stringIn = port.ReadExisting();
-                Console.WriteLine(stringIn);
                 if (stringIn.Equals("switch")) {
                     mode--;
                     clicked = false;
                     if (rightClickEnabled) {
-                        mode = mode - 1 < 1 ? 6 : mode - 1;
-                        nextMode = mode == 6 ? 1 : mode + 1;
+                        mode = mode - 1 < 1 ? 10 : mode - 1;
+                        nextMode = mode == 10 ? 1 : mode + 1;
                     } else {
                         mode = mode - 1 < 1 ? 5 : mode - 1;
                         nextMode = mode == 5 ? 1 : mode + 1;
@@ -145,8 +222,8 @@ namespace CursorMovement {
                 if (stopWatch.ElapsedMilliseconds/1000 >= switchDirectionDelay) {
                     stopWatch.Restart();
                     if (rightClickEnabled) {
-                        mode = mode + 1 > 6 ? 1 : mode + 1;
-                        nextMode = mode == 6 ? 1 : mode + 1;
+                        mode = mode + 1 > 10 ? 1 : mode + 1;
+                        nextMode = mode == 10 ? 1 : mode + 1;
                     } else {
                         mode = mode + 1 > 5 ? 1 : mode + 1;
                         nextMode = mode == 5 ? 1 : mode + 1;
@@ -156,28 +233,30 @@ namespace CursorMovement {
                     stopWatch.Start();
                 }
                 form2.updateForm(nextMode);
-                Console.WriteLine(mode);
-                Console.WriteLine(nextMode);
 
                 switch (mode) {
-                    case (1): // right
+                    case (1):
+                    case (6): // right
 
                         if (Cursor.Position.X < maxX - 5) {
                             Cursor.Position = new Point(Cursor.Position.X + speed, Cursor.Position.Y);
                         }
                         break;
-                    case (2): // up
+                    case (2):
+                    case (7):// up
                         if (Cursor.Position.Y > 5) {
                             Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y - speed);
                         }
                         break;
-                    case (3): // left
+                    case (3):
+                    case (8):// left
                         
                         if (Cursor.Position.X > 5) {
                             Cursor.Position = new Point(Cursor.Position.X - speed, Cursor.Position.Y);
                         }
                         break;
-                    case (4): // down
+                    case (4):
+                    case (9):// down
                         if (Cursor.Position.Y < maxY-5) {
                             Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y + speed);
                         }
@@ -188,7 +267,7 @@ namespace CursorMovement {
                             clicked = true;
                         }
                         break;
-                     case (6):
+                     case (10):
                         if (!clicked) {
                             mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
                         clicked = true;
@@ -207,42 +286,8 @@ namespace CursorMovement {
         
         }
 
-        private void label1_Paint(object sender, PaintEventArgs e) {
 
-        }
 
-        private void label5_Click(object sender, EventArgs e) {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e) {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e) {
-
-        }
-
-        
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            
-            if (form2.IsDisposed) {
-                form2 = new Form2();
-                form2.Show();
-            }
-            
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e) {
-            if (rightClickEnabled) {
-                rightClickEnabled = false;
-            } else {
-                rightClickEnabled = true;
-            }
-        }
-
-        private void CreateShortcut() {
-        }
 
 
     }
