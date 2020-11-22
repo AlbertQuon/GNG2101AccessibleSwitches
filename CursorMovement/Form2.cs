@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace CursorMovement {
     public partial class Form2 : Form {
-        private Form mainForm = null;
         public Form2() {
             InitializeComponent();
             this.TopMost = true;
