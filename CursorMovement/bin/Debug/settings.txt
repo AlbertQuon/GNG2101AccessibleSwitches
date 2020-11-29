@@ -1,4 +1,4 @@
 cursorSpeed(pixel/second)=2
 switchDelay(milliseconds)=1500
-directionTimeChange(seconds)=1
+directionTimeChange(milliseconds)=2800
 enableRightClick=False

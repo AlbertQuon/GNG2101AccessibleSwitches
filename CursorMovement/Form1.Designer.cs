@@ -198,12 +198,12 @@ namespace CursorMovement {
             this.directionDelayText.AutoSize = true;
             this.directionDelayText.Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.directionDelayText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.directionDelayText.Location = new System.Drawing.Point(843, 105);
+            this.directionDelayText.Location = new System.Drawing.Point(772, 103);
             this.directionDelayText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.directionDelayText.Name = "directionDelayText";
-            this.directionDelayText.Size = new System.Drawing.Size(98, 107);
+            this.directionDelayText.Size = new System.Drawing.Size(231, 107);
             this.directionDelayText.TabIndex = 11;
-            this.directionDelayText.Text = "2";
+            this.directionDelayText.Text = "2.00";
             // 
             // increaseDirDelayBtn
             // 
@@ -289,8 +289,8 @@ namespace CursorMovement {
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Switch Adjustment";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.FormClosing += new FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

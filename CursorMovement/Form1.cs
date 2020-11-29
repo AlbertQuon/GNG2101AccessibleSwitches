@@ -27,7 +27,7 @@ namespace CursorMovement {
 
         private int speed = 2;
         private int delay = 1000;
-        private int switchDirectionDelay = 2;
+        private int switchDirectionDelay = 2000;
         private Form2 form2 = null;
         private Boolean rightClickEnabled = false;
         public Form1() {
@@ -66,16 +66,16 @@ namespace CursorMovement {
             }
         }
         private void button5_Click(object sender, EventArgs e) {
-            if (switchDirectionDelay < 5) {
-                switchDirectionDelay += 1;
-                directionDelayText.Text = switchDirectionDelay.ToString();
+            if (switchDirectionDelay < 5000) {
+                switchDirectionDelay += 200;
+                directionDelayText.Text = string.Format("{0:N2}", (switchDirectionDelay - 1) / 1000.00);
             }
         }
 
         private void button6_Click(object sender, EventArgs e) {
-            if (switchDirectionDelay > 1) {
-                switchDirectionDelay -= 1;
-                directionDelayText.Text = switchDirectionDelay.ToString();
+            if (switchDirectionDelay > 1000) {
+                switchDirectionDelay -= 200;
+                directionDelayText.Text = string.Format("{0:N2}", (switchDirectionDelay - 1) / 1000.00); ;
             }
         }
 
@@ -99,8 +99,7 @@ namespace CursorMovement {
             loadSettings();
             speedText.Text = (speed * 50).ToString();
             inputDelayText.Text = string.Format("{0:N2}", (delay - 1) / 1000.00);
-            directionDelayText.Text = switchDirectionDelay.ToString();
-            
+            directionDelayText.Text = string.Format("{0:N2}", (switchDirectionDelay - 1) / 1000.00);
             rightClickEnable.Checked = rightClickEnabled;
         }
         // Functions ***************************************************************************************************
@@ -167,7 +166,7 @@ namespace CursorMovement {
                             if (setting[0].Equals("switchDelay(milliseconds)")) {
                                 delay = Int32.Parse(setting[1]);
                             }
-                            if (setting[0].Equals("directionTimeChange(seconds)")) {
+                            if (setting[0].Equals("directionTimeChange(milliseconds)")) {
                                 switchDirectionDelay = Int32.Parse(setting[1]);
                             }
                             if (setting[0].Equals("enableRightClick")) {
@@ -188,7 +187,7 @@ namespace CursorMovement {
             using (StreamWriter sw = File.CreateText(path)) {
                 sw.WriteLine("cursorSpeed(pixel/second)=" + speed.ToString());
                 sw.WriteLine("switchDelay(milliseconds)=" + delay.ToString());
-                sw.WriteLine("directionTimeChange(seconds)=" + switchDirectionDelay.ToString());
+                sw.WriteLine("directionTimeChange(milliseconds)=" + switchDirectionDelay.ToString());
                 sw.WriteLine("enableRightClick=" + rightClickEnabled.ToString());
             }
             
@@ -219,7 +218,7 @@ namespace CursorMovement {
                     stopWatch.Restart();
                 }
                 stopWatch.Stop();
-                if (stopWatch.ElapsedMilliseconds/1000 >= switchDirectionDelay) {
+                if (stopWatch.ElapsedMilliseconds >= switchDirectionDelay) {
                     stopWatch.Restart();
                     if (rightClickEnabled) {
                         mode = mode + 1 > 10 ? 1 : mode + 1;
