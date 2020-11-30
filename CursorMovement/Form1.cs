@@ -159,7 +159,6 @@ namespace CursorMovement {
                     try {
                         while ((s = sr.ReadLine()) != null) {
                             setting = s.Split('=');
-                            Console.WriteLine(setting[0] + "|" + setting[1]);
                             if (setting[0].Equals("cursorSpeed(pixel/second)")) {
                                 speed = Int32.Parse(setting[1]);
                             }
@@ -199,26 +198,68 @@ namespace CursorMovement {
             Cursor cursor = new Cursor(Cursor.Current.Handle);
             int maxX = Screen.PrimaryScreen.Bounds.Width - 1;
             int maxY = Screen.PrimaryScreen.Bounds.Height - 1;
+            Boolean select = false;
             Boolean clicked = false;
             var stopWatch = new Stopwatch();
-            stopWatch.Start();
+            
             while (true) {
 
                 var stringIn = port.ReadExisting();
                 if (stringIn.Equals("switch")) {
-                    mode--;
-                    clicked = false;
-                    if (rightClickEnabled) {
-                        mode = mode - 1 < 1 ? 10 : mode - 1;
-                        nextMode = mode == 10 ? 1 : mode + 1;
-                    } else {
-                        mode = mode - 1 < 1 ? 5 : mode - 1;
-                        nextMode = mode == 5 ? 1 : mode + 1;
-                    }
-                    stopWatch.Restart();
+                    select = select ? !select : select;
+                    Console.WriteLine("switch");
                 }
-                stopWatch.Stop();
-                if (stopWatch.ElapsedMilliseconds >= switchDirectionDelay) {
+                if (!select) {
+                    mode = nextMode;
+                    switch (mode) {
+                        case (1): // right
+                            if (Cursor.Position.X < maxX - 5) {
+                                Cursor.Position = new Point(Cursor.Position.X + speed, Cursor.Position.Y);
+                            }
+                            break;
+                        case (2):// up
+                            if (Cursor.Position.Y > 5) {
+                                Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y - speed);
+                            }
+                            break;
+                        case (3):// left
+                            if (Cursor.Position.X > 5) {
+                                Cursor.Position = new Point(Cursor.Position.X - speed, Cursor.Position.Y);
+                            }
+                            break;
+                        case (4): // down
+                            if (Cursor.Position.Y < maxY - 5) {
+                                Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y + speed);
+                            }
+                            break;
+                        case (5):
+                            if (!clicked) {
+                                mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
+                                clicked = true;
+                            }
+                            break;
+                        case (6):
+                            if (!clicked) {
+                                mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
+                                clicked = true;
+                            }
+                            break;
+
+                    }
+
+                } else {
+                    stopWatch.Stop();
+                    clicked = false;
+                    if (stopWatch.ElapsedMilliseconds >= switchDirectionDelay) {
+                        nextMode = mode == 6 ? 1 : nextMode + 1;
+                        form2.updateForm(nextMode);
+                        stopWatch.Restart();
+                    } else {
+                        stopWatch.Start();
+                    }
+                }
+                //stopWatch.Stop();
+                /*if (stopWatch.ElapsedMilliseconds >= switchDirectionDelay) {
                     stopWatch.Restart();
                     if (rightClickEnabled) {
                         mode = mode + 1 > 10 ? 1 : mode + 1;
@@ -273,9 +314,9 @@ namespace CursorMovement {
                      }
                      break;
                      
-                }
+                }*/
                 
-                await Task.Delay(20);
+                await Task.Delay(15);
             }
 
             port.Close();
