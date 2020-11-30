@@ -112,7 +112,7 @@ namespace CursorMovement {
                 try {
                     port = new SerialPort(portName, 115200);
                     port.Open();
-                    
+
                     if (port.ReadExisting().Equals("switch")) {
                         break;
                     }
@@ -131,15 +131,15 @@ namespace CursorMovement {
             if (port == null) {
                 MessageBox.Show("No device found!\n Make sure the device is plugged in properly.");
                 Environment.Exit(1);
-                
+
             }
             loadSettings();
             form2 = new Form2();
             form2.Show();
             port.Write(delay.ToString());
-            
+
         }
-        
+
 
         private void loadSettings() {
             string currDir = Path.GetDirectoryName(Application.ExecutablePath);
@@ -177,7 +177,7 @@ namespace CursorMovement {
                     }
                 }
             }
-            
+
         }
 
         private void saveSettings() {
@@ -189,7 +189,7 @@ namespace CursorMovement {
                 sw.WriteLine("directionTimeChange(milliseconds)=" + switchDirectionDelay.ToString());
                 sw.WriteLine("enableRightClick=" + rightClickEnabled.ToString());
             }
-            
+
         }
 
 
@@ -201,14 +201,20 @@ namespace CursorMovement {
             Boolean select = false;
             Boolean clicked = false;
             var stopWatch = new Stopwatch();
-            
+
             while (true) {
 
                 var stringIn = port.ReadExisting();
                 if (stringIn.Equals("switch")) {
-                    select = select ? !select : select;
+                    select = !select;
+                    if (clicked) {
+                        clicked = !clicked;
+                    }
+
                     Console.WriteLine("switch");
                 }
+
+
                 if (!select) {
                     mode = nextMode;
                     switch (mode) {
@@ -249,73 +255,18 @@ namespace CursorMovement {
 
                 } else {
                     stopWatch.Stop();
-                    clicked = false;
+
                     if (stopWatch.ElapsedMilliseconds >= switchDirectionDelay) {
-                        nextMode = mode == 6 ? 1 : nextMode + 1;
+                        if (rightClickEnabled)
+                            nextMode = nextMode == 6 ? 1 : nextMode + 1;
+                        else
+                            nextMode = nextMode == 5 ? 1 : nextMode + 1;
                         form2.updateForm(nextMode);
                         stopWatch.Restart();
                     } else {
                         stopWatch.Start();
                     }
                 }
-                //stopWatch.Stop();
-                /*if (stopWatch.ElapsedMilliseconds >= switchDirectionDelay) {
-                    stopWatch.Restart();
-                    if (rightClickEnabled) {
-                        mode = mode + 1 > 10 ? 1 : mode + 1;
-                        nextMode = mode == 10 ? 1 : mode + 1;
-                    } else {
-                        mode = mode + 1 > 5 ? 1 : mode + 1;
-                        nextMode = mode == 5 ? 1 : mode + 1;
-                    }
-                    clicked = false;
-                } else {
-                    stopWatch.Start();
-                }
-                form2.updateForm(nextMode);
-
-                switch (mode) {
-                    case (1):
-                    case (6): // right
-
-                        if (Cursor.Position.X < maxX - 5) {
-                            Cursor.Position = new Point(Cursor.Position.X + speed, Cursor.Position.Y);
-                        }
-                        break;
-                    case (2):
-                    case (7):// up
-                        if (Cursor.Position.Y > 5) {
-                            Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y - speed);
-                        }
-                        break;
-                    case (3):
-                    case (8):// left
-                        
-                        if (Cursor.Position.X > 5) {
-                            Cursor.Position = new Point(Cursor.Position.X - speed, Cursor.Position.Y);
-                        }
-                        break;
-                    case (4):
-                    case (9):// down
-                        if (Cursor.Position.Y < maxY-5) {
-                            Cursor.Position = new Point(Cursor.Position.X, Cursor.Position.Y + speed);
-                        }
-                        break;
-                    case (5):
-                        if (!clicked) {
-                            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
-                            clicked = true;
-                        }
-                        break;
-                     case (10):
-                        if (!clicked) {
-                            mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
-                        clicked = true;
-                     }
-                     break;
-                     
-                }*/
-                
                 await Task.Delay(15);
             }
 
@@ -323,7 +274,7 @@ namespace CursorMovement {
 
 
 
-        
+
         }
 
 
@@ -332,3 +283,5 @@ namespace CursorMovement {
 
     }
 }
+
+
