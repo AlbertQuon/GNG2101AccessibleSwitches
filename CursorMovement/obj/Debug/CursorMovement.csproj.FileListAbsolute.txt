@@ -19,4 +19,3 @@ C:\Users\xtrem\Dropbox\University\2nd Year\GNG\GNG2101AccessibleSwitches\CursorM
 C:\Users\xtrem\Dropbox\University\2nd Year\GNG\GNG2101AccessibleSwitches\CursorMovement\obj\Debug\CursorMovement.exe
 C:\Users\xtrem\Dropbox\University\2nd Year\GNG\GNG2101AccessibleSwitches\CursorMovement\obj\Debug\CursorMovement.pdb
 C:\Users\xtrem\Dropbox\University\2nd Year\GNG\GNG2101AccessibleSwitches\CursorMovement\obj\Debug\CursorMovement.Form2.resources
-C:\Users\xtrem\Dropbox\University\2nd Year\GNG\GNG2101AccessibleSwitches\CursorMovement\obj\Debug\CursorMovement.Form3.resources
