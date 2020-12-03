@@ -25,6 +25,7 @@ namespace CursorMovement {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.speedText = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.inputDelayText = new System.Windows.Forms.Label();
@@ -40,7 +41,14 @@ namespace CursorMovement {
             this.increaseDirDelayBtn = new System.Windows.Forms.Button();
             this.decreaseDirDelayBtn = new System.Windows.Forms.Button();
             this.openNextMove = new System.Windows.Forms.LinkLabel();
-            this.rightClickEnable = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // speedText
@@ -48,8 +56,8 @@ namespace CursorMovement {
             this.speedText.AccessibleName = "50";
             this.speedText.AutoSize = true;
             this.speedText.Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speedText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.speedText.Location = new System.Drawing.Point(36, 102);
+            this.speedText.ForeColor = System.Drawing.Color.Black;
+            this.speedText.Location = new System.Drawing.Point(40, 272);
             this.speedText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.speedText.Name = "speedText";
             this.speedText.Size = new System.Drawing.Size(204, 107);
@@ -60,8 +68,8 @@ namespace CursorMovement {
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.label2.Location = new System.Drawing.Point(224, 99);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(224, 272);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(114, 110);
@@ -73,8 +81,8 @@ namespace CursorMovement {
             this.inputDelayText.AccessibleName = "50";
             this.inputDelayText.AutoSize = true;
             this.inputDelayText.Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputDelayText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.inputDelayText.Location = new System.Drawing.Point(410, 105);
+            this.inputDelayText.ForeColor = System.Drawing.Color.Black;
+            this.inputDelayText.Location = new System.Drawing.Point(455, 272);
             this.inputDelayText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.inputDelayText.Name = "inputDelayText";
             this.inputDelayText.Size = new System.Drawing.Size(231, 107);
@@ -97,35 +105,35 @@ namespace CursorMovement {
             this.speedTitle.AllowDrop = true;
             this.speedTitle.AutoSize = true;
             this.speedTitle.Font = new System.Drawing.Font("Arial", 35.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speedTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.speedTitle.Location = new System.Drawing.Point(91, 22);
+            this.speedTitle.ForeColor = System.Drawing.Color.Black;
+            this.speedTitle.Location = new System.Drawing.Point(40, 40);
             this.speedTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.speedTitle.Name = "speedTitle";
-            this.speedTitle.Size = new System.Drawing.Size(158, 53);
+            this.speedTitle.Size = new System.Drawing.Size(312, 53);
             this.speedTitle.TabIndex = 8;
-            this.speedTitle.Text = "Speed";
+            this.speedTitle.Text = "Mouse Speed";
             this.speedTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // inputDelayTitle
             // 
             this.inputDelayTitle.AutoSize = true;
             this.inputDelayTitle.Font = new System.Drawing.Font("Arial", 35.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputDelayTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.inputDelayTitle.Location = new System.Drawing.Point(379, 22);
+            this.inputDelayTitle.ForeColor = System.Drawing.Color.Black;
+            this.inputDelayTitle.Location = new System.Drawing.Point(472, 40);
             this.inputDelayTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.inputDelayTitle.Name = "inputDelayTitle";
-            this.inputDelayTitle.Size = new System.Drawing.Size(327, 53);
+            this.inputDelayTitle.Size = new System.Drawing.Size(271, 53);
             this.inputDelayTitle.TabIndex = 9;
-            this.inputDelayTitle.Text = "Input Delay (s)";
+            this.inputDelayTitle.Text = "Delay Input ";
             // 
             // reduceInputDelayBtn
             // 
-            this.reduceInputDelayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.reduceInputDelayBtn.BackColor = System.Drawing.Color.White;
             this.reduceInputDelayBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.reduceInputDelayBtn.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reduceInputDelayBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.reduceInputDelayBtn.ForeColor = System.Drawing.Color.White;
             this.reduceInputDelayBtn.Image = global::CursorMovement.Properties.Resources.icons8_minus_100__1_;
-            this.reduceInputDelayBtn.Location = new System.Drawing.Point(409, 244);
+            this.reduceInputDelayBtn.Location = new System.Drawing.Point(488, 408);
             this.reduceInputDelayBtn.Margin = new System.Windows.Forms.Padding(0);
             this.reduceInputDelayBtn.Name = "reduceInputDelayBtn";
             this.reduceInputDelayBtn.Size = new System.Drawing.Size(94, 102);
@@ -136,12 +144,12 @@ namespace CursorMovement {
             // 
             // increaseInputDelayBtn
             // 
-            this.increaseInputDelayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.increaseInputDelayBtn.BackColor = System.Drawing.Color.White;
             this.increaseInputDelayBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.increaseInputDelayBtn.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.increaseInputDelayBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.increaseInputDelayBtn.ForeColor = System.Drawing.Color.White;
             this.increaseInputDelayBtn.Image = global::CursorMovement.Properties.Resources.icons8_plus_100;
-            this.increaseInputDelayBtn.Location = new System.Drawing.Point(523, 237);
+            this.increaseInputDelayBtn.Location = new System.Drawing.Point(624, 400);
             this.increaseInputDelayBtn.Margin = new System.Windows.Forms.Padding(2);
             this.increaseInputDelayBtn.Name = "increaseInputDelayBtn";
             this.increaseInputDelayBtn.Size = new System.Drawing.Size(134, 117);
@@ -151,12 +159,12 @@ namespace CursorMovement {
             // 
             // reduceSpeedBtn
             // 
-            this.reduceSpeedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.reduceSpeedBtn.BackColor = System.Drawing.Color.White;
             this.reduceSpeedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.reduceSpeedBtn.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reduceSpeedBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.reduceSpeedBtn.ForeColor = System.Drawing.Color.White;
             this.reduceSpeedBtn.Image = global::CursorMovement.Properties.Resources.icons8_minus_100__1_;
-            this.reduceSpeedBtn.Location = new System.Drawing.Point(55, 241);
+            this.reduceSpeedBtn.Location = new System.Drawing.Point(64, 408);
             this.reduceSpeedBtn.Margin = new System.Windows.Forms.Padding(0);
             this.reduceSpeedBtn.Name = "reduceSpeedBtn";
             this.reduceSpeedBtn.Size = new System.Drawing.Size(94, 102);
@@ -167,12 +175,12 @@ namespace CursorMovement {
             // 
             // increaseSpeedBtn
             // 
-            this.increaseSpeedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.increaseSpeedBtn.BackColor = System.Drawing.Color.White;
             this.increaseSpeedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.increaseSpeedBtn.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.increaseSpeedBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.increaseSpeedBtn.ForeColor = System.Drawing.Color.White;
             this.increaseSpeedBtn.Image = global::CursorMovement.Properties.Resources.icons8_plus_100;
-            this.increaseSpeedBtn.Location = new System.Drawing.Point(185, 236);
+            this.increaseSpeedBtn.Location = new System.Drawing.Point(200, 400);
             this.increaseSpeedBtn.Margin = new System.Windows.Forms.Padding(2);
             this.increaseSpeedBtn.Name = "increaseSpeedBtn";
             this.increaseSpeedBtn.Size = new System.Drawing.Size(134, 117);
@@ -184,21 +192,21 @@ namespace CursorMovement {
             // 
             this.directionTimerTitle.AutoSize = true;
             this.directionTimerTitle.Font = new System.Drawing.Font("Arial", 35.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.directionTimerTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.directionTimerTitle.Location = new System.Drawing.Point(722, 22);
+            this.directionTimerTitle.ForeColor = System.Drawing.Color.Black;
+            this.directionTimerTitle.Location = new System.Drawing.Point(873, 42);
             this.directionTimerTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.directionTimerTitle.Name = "directionTimerTitle";
-            this.directionTimerTitle.Size = new System.Drawing.Size(340, 53);
+            this.directionTimerTitle.Size = new System.Drawing.Size(375, 53);
             this.directionTimerTitle.TabIndex = 10;
-            this.directionTimerTitle.Text = "Timer Delay (s)";
+            this.directionTimerTitle.Text = "Cycle Frequency";
             // 
             // directionDelayText
             // 
             this.directionDelayText.AccessibleName = "50";
             this.directionDelayText.AutoSize = true;
             this.directionDelayText.Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.directionDelayText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(213)))), ((int)(((byte)(219)))));
-            this.directionDelayText.Location = new System.Drawing.Point(772, 103);
+            this.directionDelayText.ForeColor = System.Drawing.Color.Black;
+            this.directionDelayText.Location = new System.Drawing.Point(919, 279);
             this.directionDelayText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.directionDelayText.Name = "directionDelayText";
             this.directionDelayText.Size = new System.Drawing.Size(231, 107);
@@ -207,12 +215,12 @@ namespace CursorMovement {
             // 
             // increaseDirDelayBtn
             // 
-            this.increaseDirDelayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.increaseDirDelayBtn.BackColor = System.Drawing.Color.White;
             this.increaseDirDelayBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.increaseDirDelayBtn.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.increaseDirDelayBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.increaseDirDelayBtn.ForeColor = System.Drawing.Color.White;
             this.increaseDirDelayBtn.Image = global::CursorMovement.Properties.Resources.icons8_plus_100;
-            this.increaseDirDelayBtn.Location = new System.Drawing.Point(907, 238);
+            this.increaseDirDelayBtn.Location = new System.Drawing.Point(1054, 402);
             this.increaseDirDelayBtn.Margin = new System.Windows.Forms.Padding(2);
             this.increaseDirDelayBtn.Name = "increaseDirDelayBtn";
             this.increaseDirDelayBtn.Size = new System.Drawing.Size(134, 117);
@@ -222,12 +230,12 @@ namespace CursorMovement {
             // 
             // decreaseDirDelayBtn
             // 
-            this.decreaseDirDelayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.decreaseDirDelayBtn.BackColor = System.Drawing.Color.White;
             this.decreaseDirDelayBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.decreaseDirDelayBtn.Font = new System.Drawing.Font("Times New Roman", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.decreaseDirDelayBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
+            this.decreaseDirDelayBtn.ForeColor = System.Drawing.Color.White;
             this.decreaseDirDelayBtn.Image = global::CursorMovement.Properties.Resources.icons8_minus_100__1_;
-            this.decreaseDirDelayBtn.Location = new System.Drawing.Point(762, 246);
+            this.decreaseDirDelayBtn.Location = new System.Drawing.Point(937, 408);
             this.decreaseDirDelayBtn.Margin = new System.Windows.Forms.Padding(0);
             this.decreaseDirDelayBtn.Name = "decreaseDirDelayBtn";
             this.decreaseDirDelayBtn.Size = new System.Drawing.Size(94, 102);
@@ -239,9 +247,10 @@ namespace CursorMovement {
             // openNextMove
             // 
             this.openNextMove.AutoSize = true;
+            this.openNextMove.BackColor = System.Drawing.Color.White;
             this.openNextMove.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.openNextMove.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.openNextMove.Location = new System.Drawing.Point(767, 394);
+            this.openNextMove.LinkColor = System.Drawing.Color.RoyalBlue;
+            this.openNextMove.Location = new System.Drawing.Point(480, 536);
             this.openNextMove.Name = "openNextMove";
             this.openNextMove.Size = new System.Drawing.Size(264, 26);
             this.openNextMove.TabIndex = 14;
@@ -250,26 +259,72 @@ namespace CursorMovement {
             this.openNextMove.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.openNextMove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // rightClickEnable
+            // label1
             // 
-            this.rightClickEnable.AutoSize = true;
-            this.rightClickEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.rightClickEnable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.rightClickEnable.Location = new System.Drawing.Point(47, 392);
-            this.rightClickEnable.Name = "rightClickEnable";
-            this.rightClickEnable.Size = new System.Drawing.Size(342, 30);
-            this.rightClickEnable.TabIndex = 15;
-            this.rightClickEnable.Text = "Add Extra Right Click Sequence";
-            this.rightClickEnable.UseVisualStyleBackColor = true;
-            this.rightClickEnable.CheckedChanged += new System.EventHandler(this.rightClickEnable_CheckedChanged);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 36F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(664, 312);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 55);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "sec";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 36F);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(1128, 320);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(99, 55);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "sec";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(534, 112);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(152, 148);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(75, 93);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(239, 193);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 18;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.White;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(996, 120);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(130, 126);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 19;
+            this.pictureBox3.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
-            this.ClientSize = new System.Drawing.Size(1081, 436);
-            this.Controls.Add(this.rightClickEnable);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1316, 573);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.openNextMove);
             this.Controls.Add(this.decreaseDirDelayBtn);
             this.Controls.Add(this.increaseDirDelayBtn);
@@ -291,6 +346,9 @@ namespace CursorMovement {
             this.Text = "Switch Adjustment";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,7 +371,11 @@ namespace CursorMovement {
         private Button increaseDirDelayBtn;
         private Button decreaseDirDelayBtn;
         private LinkLabel openNextMove;
-        private CheckBox rightClickEnable;
+        private Label label1;
+        private Label label3;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
     }
 }
 
